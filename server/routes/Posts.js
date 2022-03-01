@@ -3,7 +3,11 @@ const router = express.Router()
 const { Posts } = require('../models/')
 
 router.get('/', async (req, res) => {
-    const listOfPosts = await Posts.findAll()
+    const listOfPosts = await Posts.findAll({
+        order: [
+            ['id', 'DESC']
+        ]
+    })
     res.json(listOfPosts)
 })
 
