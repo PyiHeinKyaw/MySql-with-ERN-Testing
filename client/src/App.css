@@ -1,14 +1,16 @@
-body{
+body {
     margin: 0;
     padding: 0;
     text-align: center;
     letter-spacing: 1px;
     font-size: 14px;
 }
-.box{
+
+.box {
     border: 1px solid red;
 }
-.header{
+
+.header {
     background-color: #00838f;
     height: 90px;
     display: flex;
@@ -16,7 +18,8 @@ body{
     align-items: center;
     padding-right: 20px;
 }
-.link{
+
+.link {
     margin-left: 20px;
     text-decoration: none;
     color: #fff;
@@ -25,10 +28,13 @@ body{
     font-size: 15px;
 }
 
-.link:active, .link:hover{
+.link:active,
+.link:hover {
     text-decoration: none;
 }
-.post_container{
+
+.post_container {
+    cursor: pointer;
     padding: 0px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -37,7 +43,8 @@ body{
     width: auto;
     margin: 10px auto;
 }
-.post_header{
+
+.post_header {
     color: #fff;
     background-color: #00838f;
     border-radius: 10px 10px 0 0;
@@ -49,7 +56,8 @@ body{
     justify-content: center;
     align-items: center;
 }
-.post_body{
+
+.post_body {
     padding: 20px;
     letter-spacing: 1px;
     border-bottom: 1px solid #eee;
@@ -57,23 +65,27 @@ body{
     text-align: left;
     line-height: 20px;
 }
-.post_footer{
+
+.post_footer {
     text-align: left;
     padding: 20px;
     font-size: 12px;
     font-weight: 500;
 }
-.form_row{
+
+.form_row {
     display: flex;
     width: 600px;
     margin: 20px auto;
     justify-content: space-between;
     align-items: center;
 }
-.form_row_btn{
+
+.form_row_btn {
     justify-content: right !important;
 }
-.form_row_btn button{
+
+.form_row_btn button {
     background-color: #00838f;
     border: 1px solid #00838f;
     padding: 10px 20px;
@@ -83,7 +95,8 @@ body{
     cursor: pointer;
     transition: .2s all;
 }
-.custom_input{
+
+.custom_input {
     border: 0;
     padding: 10px;
     border: 1px solid #ccc;
@@ -91,9 +104,33 @@ body{
     transition: .4s all !important;
     width: 470px;
 }
-.error_row{
+
+.error_row {
     color: red;
     width: 600px;
     margin: 0 auto;
     text-align: right;
+}
+
+.innerPost {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.innerPost {
+    width: 900px;
+}
+
+.postBody {
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentSection {
+    margin: 10px 0px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -2,8 +2,13 @@ const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')
 
-router.get('/', (req, res) => {
-    res.send('Hello World')
+router.get('/', async (req, res) => {
+    const data = await Users.findAll({
+        order: [
+            ['id', 'DESC']
+        ]
+    })
+    res.json(data)
 })
 
 router.post('/', async (req, res) => {

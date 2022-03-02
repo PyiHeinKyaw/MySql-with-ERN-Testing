@@ -19,7 +19,7 @@ const CreatePost = () => {
 
     const onSubmit = data => {
         axios.post("http://localhost:3030/posts", data).then(() => {
-            console.log('IT WORKS')
+            alert('IT WORKS')
         })
     }
 
