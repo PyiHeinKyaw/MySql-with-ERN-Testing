@@ -5,6 +5,8 @@ import axios from 'axios'
 const Post = () => {
 
     const [post, setPost] = useState({})
+    const [comments, setComments] = useState([])
+    const [newComment, setNewComment] = useState('')
 
     let { id } = useParams()
 
@@ -12,19 +14,36 @@ const Post = () => {
         axios.get(`http://localhost:3030/posts/byId/${id}`).then((response) => {
             setPost(response.data)
         })
-    }, [post])
+
+        axios.get(`http://localhost:3030/comments/${id}`).then((response) => {
+            setComments(response.data)
+        })
+    }, [comments])
+
+    const addComment = () => {
+        axios.post(`http://localhost:3030/comments/`, { commentBody: newComment, PostId: id }).then((response) => {
+            setNewComment("")
+        })
+    }
 
     return (
-        <div className="postBody">
-            <div className="post_container innerPost">
+        <>
+            <div className="post_container">
                 <div className="post_header">{post.title}</div>
                 <div className="post_body">{post.postText}</div>
                 <div className="post_footer">{post.username}</div>
             </div>
-            <div className="commentSection">
-                Comment Section
+            <div className='comment_section'>
+                <input type="text" name="comment" value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+                <button onClick={addComment}>Comment</button>
             </div>
-        </div>
+
+            {comments.map((comment, key) => (
+                <div className="comment_list_container" key={key}>
+                    {comment.commentBody}
+                </div>
+            ))}
+        </>
     )
 }
 

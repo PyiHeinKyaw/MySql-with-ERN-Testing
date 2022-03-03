@@ -14,9 +14,10 @@ body {
     background-color: #00838f;
     height: 90px;
     display: flex;
-    justify-content: right;
+    justify-content: left;
     align-items: center;
-    padding-right: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
 .link {
@@ -40,7 +41,6 @@ body {
     border-radius: 10px;
     max-width: 600px;
     border: 1px solid #eee;
-    width: auto;
     margin: 10px auto;
 }
 
@@ -111,26 +111,46 @@ body {
     margin: 0 auto;
     text-align: right;
 }
-
-.innerPost {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-}
-
-.innerPost {
-    width: 900px;
-}
-
 .postBody {
     padding: 0px 30px;
     display: flex;
     justify-content: space-between;
 }
-
-.commentSection {
-    margin: 10px 0px;
-    width: 50%;
+.comment_section {
+    margin: 10px auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 600px;
+}
+.comment_section input{
+    width: 75%;
+    border: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: .4s all !important;
+    letter-spacing: 1px !important;
+}
+.comment_section button{
+    background-color: #00838f;
+    border: 1px solid #00838f;
+    padding: 10px 20px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s all;   
+    border-radius: 4px;
+}
+.comment_list_container{
+    width: 600px;
+    border: 1px solid #eee;
+    margin: 10px auto;
+    color: #555;
+    border-radius: 6px;
+    box-sizing: border-box;
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
 }

@@ -11,7 +11,7 @@ const Home = () => {
         axios.get("http://localhost:3030/posts").then((response) => {
             setPosts(response.data)
         })
-    }, [posts])
+    }, [])
 
     return (
         <div>

@@ -10,6 +10,11 @@ app.use(express.json())
 const posts = require('./routes/Posts')
 app.use('/posts', posts)
 
+// posts routes
+const comments = require('./routes/Comments')
+app.use('/comments', comments)
+
+
 // users routes
 const users = require('./routes/Users')
 app.use('/users', users)
