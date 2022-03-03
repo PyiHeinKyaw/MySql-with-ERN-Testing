@@ -1,20 +1,37 @@
 const express = require('express')
 const router = express.Router()
-const { Users } = require('../models')
+const { Users } = require('../models/')
+const bcrypt = require('bcrypt')
 
-router.get('/', async (req, res) => {
-    const data = await Users.findAll({
-        order: [
-            ['id', 'DESC']
-        ]
-    })
-    res.json(data)
-})
 
 router.post('/', async (req, res) => {
-    const user = req.body
-    await Users.create(user)
-    res.json(user)
+    const { username, password } = req.body
+
+    const user = await Users.findOne({ where: { username: username } })
+
+    if (user)
+        res.json({ error: "User Already Exist" })
+    else
+        bcrypt.hash(password, 10).then((hash) => {
+            Users.create({
+                username: username,
+                password: hash
+            })
+            res.json('Success')
+        })
+})
+
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body
+    const user = await Users.findOne({ where: { username: username } })
+
+    if (!user) res.json({ error: "User Doesn't Exist!" })
+
+    bcrypt.compare(password, user.password).then((match) => {
+        if (!match) res.json({ error: "Wrong Username And Password Combination" })
+
+        res.json("YOU HAVE LOGGED IN")
+    })
 })
 
 module.exports = router

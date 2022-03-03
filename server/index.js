@@ -6,6 +6,10 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
+// auth routes
+const users = require('./routes/Users')
+app.use('/auth', users)
+
 // posts routes
 const posts = require('./routes/Posts')
 app.use('/posts', posts)
@@ -14,10 +18,6 @@ app.use('/posts', posts)
 const comments = require('./routes/Comments')
 app.use('/comments', comments)
 
-
-// users routes
-const users = require('./routes/Users')
-app.use('/users', users)
 
 const port = 3030
 

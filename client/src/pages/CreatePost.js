@@ -27,7 +27,8 @@ const CreatePost = () => {
     }
 
     return (
-        <div>
+        <>
+            <h1 className='page_name'>Add New Post</h1>
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                 <Form>
                     <div className='form_row'>
@@ -68,7 +69,7 @@ const CreatePost = () => {
                     </div>
                 </Form>
             </Formik>
-        </div >
+        </>
     )
 }
 
