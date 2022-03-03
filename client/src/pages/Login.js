@@ -20,7 +20,8 @@ const Login = () => {
 
     const onSubmit = data => {
         axios.post("http://localhost:3030/auth/login", data).then((response) => {
-            console.log(response)
+            if (response.data.error) alert(response.data.error)
+            sessionStorage.setItem("accessToken", response.data.accessToken)
         })
     }
 
@@ -33,7 +34,6 @@ const Login = () => {
                         <label>Username: </label>
                         <Field
                             autoComplete="off"
-                            id="inputCreatePost"
                             name="username"
                             placeholder="(Ex. John...)"
                             className="custom_input"
@@ -44,7 +44,6 @@ const Login = () => {
                         <label>Password: </label>
                         <Field
                             autoComplete="off"
-                            id="inputCreatePost"
                             name="password"
                             placeholder="(Ex. Your Password...)"
                             className="custom_input"
