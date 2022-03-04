@@ -20,8 +20,13 @@ const Login = () => {
 
     const onSubmit = data => {
         axios.post("http://localhost:3030/auth/login", data).then((response) => {
-            if (response.data.error) alert(response.data.error)
-            sessionStorage.setItem("accessToken", response.data.accessToken)
+            if (response.data.error) {
+                console.log(response)
+            }
+            else {
+                sessionStorage.setItem("accessToken", response.data)
+                history.push('/')
+            }
         })
     }
 
