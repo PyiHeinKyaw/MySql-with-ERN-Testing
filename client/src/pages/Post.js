@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { AuthContext } from '../helpers/AuthContext'
 
 const Post = () => {
+
+    const { authState } = useContext(AuthContext)
 
     const [post, setPost] = useState({})
     const [comments, setComments] = useState([])
@@ -26,10 +29,13 @@ const Post = () => {
             PostId: id
         }, {
             headers: {
-                accessToken: sessionStorage.getItem("accessToken")
+                accessToken: localStorage.getItem("accessToken")
             }
         }).then((response) => {
             setNewComment("")
+            if (response.data.error) {
+                console.log(response.data.error)
+            }
         })
     }
 
@@ -40,16 +46,24 @@ const Post = () => {
                 <div className="post_body">{post.postText}</div>
                 <div className="post_footer">{post.username}</div>
             </div>
-            <div className='comment_section'>
-                <input type="text" name="comment" value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-                <button onClick={addComment}>Comment</button>
-            </div>
-
-            {comments.map((comment, key) => (
-                <div className="comment_list_container" key={key}>
-                    {comment.commentBody}
+            {!authState ? (
+                <h3>Log In First to Comment Out</h3>
+            ) : (
+                <div className='comment_section'>
+                    <input type="text" name="comment" value={newComment} onChange={(e) => setNewComment(e.target.value)} />
+                    <button onClick={addComment}>Comment</button>
                 </div>
-            ))}
+            )
+            }
+
+            {
+                comments.map((comment, key) => (
+                    <div className="comment_list_container" key={key}>
+                        <h4>{comment.username}</h4>
+                        {comment.commentBody}
+                    </div>
+                ))
+            }
         </>
     )
 }

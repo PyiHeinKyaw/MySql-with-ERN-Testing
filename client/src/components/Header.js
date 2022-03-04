@@ -1,7 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { AuthContext } from '../helpers/AuthContext'
+import { Link, useHistory } from 'react-router-dom'
 
 const Header = () => {
+
+    const { authState } = useContext(AuthContext)
     return (
         <div className="header">
             <div className='left_menu'>
@@ -12,14 +15,18 @@ const Header = () => {
                     New Post
                 </Link>
             </div>
-            <div className='right_menu'>
-                <Link to="/login" className='link'>
-                    Login
-                </Link>
-                <Link to="/register" className='link'>
-                    Register
-                </Link>
-            </div>
+            {!authState && (
+                <>
+                    <div className='right_menu'>
+                        <Link to="/login" className='link'>
+                            Login
+                        </Link>
+                        <Link to="/register" className='link'>
+                            Register
+                        </Link>
+                    </div>
+                </>
+            )}
         </div >
     )
 }
