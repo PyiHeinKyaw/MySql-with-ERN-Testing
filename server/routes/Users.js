@@ -45,9 +45,10 @@ router.post('/login', async (req, res) => {
             }
         })
     }
+})
 
-
-
+router.get('/checkauth', validateToken, async (req, res) => {
+    res.json(req.user)
 })
 
 module.exports = router

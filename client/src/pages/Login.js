@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../helpers/AuthContext'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -7,6 +8,7 @@ import { useHistory } from 'react-router-dom'
 const Login = () => {
 
     const history = useHistory()
+    const { setAuthState } = useContext(AuthContext)
 
     const initialValues = {
         username: "",
@@ -14,17 +16,19 @@ const Login = () => {
     }
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().min(3).required(),
+        username: Yup.string().trim().min(3).required(),
         password: Yup.string().min(6).required(),
     })
 
     const onSubmit = data => {
         axios.post("http://localhost:3030/auth/login", data).then((response) => {
             if (response.data.error) {
+                setAuthState(false)
                 console.log(response)
             }
             else {
-                sessionStorage.setItem("accessToken", response.data)
+                localStorage.setItem("accessToken", response.data)
+                setAuthState(true)
                 history.push('/')
             }
         })

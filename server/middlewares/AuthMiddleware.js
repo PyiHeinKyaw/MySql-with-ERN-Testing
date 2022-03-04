@@ -4,13 +4,15 @@ const validateToken = (req, res, next) => {
 
     const accessToken = req.header("accessToken")
 
-
     if (!accessToken) {
         res.json({ error: "User doesn't exit!!" })
     }
     else {
         try {
             const validToken = verify(accessToken, "importantsecret")
+
+            // Initialize user from token
+            req.user = validToken
 
             if (validToken) {
                 return next()
