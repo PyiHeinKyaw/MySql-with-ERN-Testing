@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../helpers/AuthContext'
+import { AuthContext } from '../../helpers/AuthContext'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
@@ -23,12 +23,12 @@ const Login = () => {
     const onSubmit = data => {
         axios.post("http://localhost:3030/auth/login", data).then((response) => {
             if (response.data.error) {
-                setAuthState(false)
-                console.log(response)
+                setAuthState({ username: "", id: 0, status: false })
+                alert(response.data.error)
             }
             else {
-                localStorage.setItem("accessToken", response.data)
-                setAuthState(true)
+                localStorage.setItem("accessToken", response.data.token)
+                setAuthState({ username: response.data.username, id: response.data, status: true })
                 history.push('/')
             }
         })

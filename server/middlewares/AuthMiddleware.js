@@ -5,7 +5,7 @@ const validateToken = (req, res, next) => {
     const accessToken = req.header("accessToken")
 
     if (!accessToken) {
-        res.json({ error: "User doesn't exit!!" })
+        res.json({ error: "Deny for authorization" })
     }
     else {
         try {

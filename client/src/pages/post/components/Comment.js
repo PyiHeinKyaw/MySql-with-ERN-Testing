@@ -1,23 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react'
+import { AuthContext } from '../../../helpers/AuthContext'
 import axios from 'axios'
-import { AuthContext } from '../helpers/AuthContext'
 
-const Post = () => {
+const Comment = props => {
 
-    const { authState } = useContext(AuthContext)
-
-    const [post, setPost] = useState({})
     const [comments, setComments] = useState([])
     const [newComment, setNewComment] = useState('')
 
-    let { id } = useParams()
+    const { authState } = useContext(AuthContext)
+
+    const id = props.postId
+
 
     useEffect(() => {
-        axios.get(`http://localhost:3030/posts/byId/${id}`).then((response) => {
-            setPost(response.data)
-        })
-
         axios.get(`http://localhost:3030/comments/${id}`).then((response) => {
             setComments(response.data)
         })
@@ -39,14 +34,27 @@ const Post = () => {
         })
     }
 
+    const deleteComment = e => {
+        const commentId = e.target.id
+
+        axios.delete(`http://localhost:3030/comments/${commentId}`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken")
+            }
+        }).then((response) => {
+            if (response.data.error) {
+                console.log(response.data.error)
+            }
+            else {
+                alert('Comment has been deleted')
+            }
+        })
+    }
+
+
     return (
         <>
-            <div className="post_container">
-                <div className="post_header">{post.title}</div>
-                <div className="post_body">{post.postText}</div>
-                <div className="post_footer">{post.username}</div>
-            </div>
-            {!authState ? (
+            {!authState.status ? (
                 <h3>Log In First to Comment Out</h3>
             ) : (
                 <div className='comment_section'>
@@ -59,8 +67,15 @@ const Post = () => {
             {
                 comments.map((comment, key) => (
                     <div className="comment_list_container" key={key}>
-                        <h4>{comment.username}</h4>
-                        {comment.commentBody}
+                        <div className='left'>
+                            <h4>{comment.username}</h4>
+                            {comment.commentBody}
+                        </div>
+                        <div className='right'>
+                            {authState.username === comment.username && (
+                                <button id={comment.id} onClick={deleteComment}>x</button>
+                            )}
+                        </div>
                     </div>
                 ))
             }
@@ -68,4 +83,4 @@ const Post = () => {
     )
 }
 
-export default Post
+export default Comment
