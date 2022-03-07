@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Header, CreatePost, Login, Register, Home, Post } from './pages'
+import { Header, CreatePost, Login, Register, Home, Post, Profile } from './pages'
 import { AuthContext } from './helpers/AuthContext'
 import axios from 'axios'
 
@@ -45,6 +45,7 @@ const App = () => {
                                 <Route path="/" exact component={Home}></Route>
                                 <Route path="/createpost" exact component={CreatePost}></Route>
                                 <Route path="/post/:id" exact component={Post}></Route>
+                                <Route path="/profile/:id" exact component={Profile}></Route>
                             </>
                         )}
 

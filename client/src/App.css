@@ -6,6 +6,7 @@ body {
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
     background-color: #fcfcfc;
+    color: #444;
 }
 
 h1,
@@ -31,7 +32,8 @@ h6 {
 }
 
 .header {
-    background-color: #00838f;
+    background-color: #fcfcff;
+    border-bottom: 1px solid #ddd;
     height: 90px;
     display: flex;
     justify-content: space-between;
@@ -42,17 +44,26 @@ h6 {
 
 .logout_btn {
     margin-left: 20px;
-    background-color: #fff;
+    background-color: #00838f;
     border: 0;
     padding: 10px;
     cursor: pointer;
     border-radius: 4px;
     width: 100px;
     letter-spacing: 1px;
-    color: #00838f;
+    color: #fcfcfc;
     transition: .4s all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.logout_btn .icon{
+    font-weight: bolder;
+    margin-right: 5px;
+}
+.logout_btn:hover {
+    background-color: #0096a3d0;
+}
 .header_username {
     color: #fff;
     cursor: pointer;
@@ -66,14 +77,10 @@ h6 {
     align-items: center;
 }
 
-.logout_btn:hover {
-    background-color: #efefef;
-}
-
 .link {
     margin-left: 20px;
     text-decoration: none;
-    color: #fff;
+    color: #444;
     font-weight: 300;
     font-size: 15px;
 }

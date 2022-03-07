@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../helpers/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
+import { AiOutlineLogout } from 'react-icons/ai'
 
 const Header = () => {
 
@@ -43,11 +44,14 @@ const Header = () => {
             ) : (
                 <>
                     <div className='username_side'>
-                        <h3 className='header_username'>{authState.username}</h3>
-                        <button className='logout_btn' onClick={handleClick}>Logout</button>
+                        <h3 className='header_username'>
+                            <Link to={"/profile/" + authState.id} className='link'>{authState.username}</Link>
+                        </h3>
+                        <button className='logout_btn' onClick={handleClick}><AiOutlineLogout className='icon' /> Logout</button>
                     </div>
                 </>
-            )}
+            )
+            }
         </div >
     )
 }

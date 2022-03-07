@@ -4,3 +4,4 @@ export { default as Login } from "./login";
 export { default as Home } from "./newsfeed";
 export { default as Post } from "./post";
 export { default as Register } from "./register";
+export { default as Profile } from './profile';
