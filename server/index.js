@@ -22,6 +22,10 @@ app.use('/comments', comments)
 const likes = require('./routes/Likes')
 app.use('/likes', likes)
 
+// followers routes
+const followers = require('./routes/Followers')
+app.use('/followers', followers)
+
 
 const port = 3030
 
