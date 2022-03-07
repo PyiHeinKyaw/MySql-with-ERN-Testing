@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import axios from 'axios'
+import { AuthContext } from '../../../helpers/AuthContext'
 
 const Post = props => {
+
+    const { authState } = useContext(AuthContext)
+    const userId = authState.id
+
     const { id, title, postText, Likes } = props.value
+    let heart = props.heartButton
     const history = useHistory()
     const [likeStatus, setLikeStatus] = useState(false)
 
@@ -25,8 +31,26 @@ const Post = props => {
                 accessToken: localStorage.getItem("accessToken")
             }
         }).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
         })
+    }
+
+    const isLiked = (data) => {
+        const filter = data.filter(like => like.UserId === userId)
+        if (filter.length === 1) {
+            return (
+                <>
+                    <AiFillHeart className='icon' />
+                </>
+            )
+        } else {
+            return (
+                <>
+
+                    <AiOutlineHeart className='icon' />
+                </>
+            )
+        }
     }
 
     return (
@@ -40,7 +64,9 @@ const Post = props => {
                 <p>{Likes.length}</p>
 
                 <button onClick={() => handleLike(id)} className="icon_click">
-                    {!likeStatus ? <AiOutlineHeart className='icon' /> : <AiFillHeart className='icon' />}
+                    {isLiked(Likes)}
+                    {/* {!likeStatus ? <AiOutlineHeart className='icon' /> : <AiFillHeart className='icon' />} */}
+
                 </button>
             </div>
         </div>

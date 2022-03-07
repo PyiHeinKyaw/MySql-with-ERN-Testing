@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "mern_test",
     "host": "localhost",
     "dialect": "mysql"
