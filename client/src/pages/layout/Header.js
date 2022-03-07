@@ -23,6 +23,7 @@ const Header = () => {
                     New Post
                 </Link>
             </div>
+
             {authState.status === false ? (
                 <>
                     <div className='right_menu'>
@@ -36,7 +37,10 @@ const Header = () => {
                 </>
             ) : (
                 <>
-                    <button className='logout_btn' onClick={handleClick}>Logout</button>
+                    <div className='username_side'>
+                        <h3 className='header_username'>{authState.username}</h3>
+                        <button className='logout_btn' onClick={handleClick}>Logout</button>
+                    </div>
                 </>
             )}
         </div >

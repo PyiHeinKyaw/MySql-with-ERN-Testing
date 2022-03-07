@@ -5,6 +5,7 @@ body {
     letter-spacing: 1px;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    background-color: #fcfcfc;
 }
 
 h1,
@@ -14,6 +15,10 @@ h4,
 h5,
 h6 {
     font-weight: 500;
+}
+
+.post_divider_line {
+    color: #fff;
 }
 
 .box {
@@ -36,8 +41,8 @@ h6 {
 }
 
 .logout_btn {
-
-    background: linear-gradient(#fff, #ccc, #aaa);
+    margin-left: 20px;
+    background-color: #fff;
     border: 0;
     padding: 10px;
     cursor: pointer;
@@ -48,8 +53,21 @@ h6 {
     transition: .4s all;
 }
 
+.header_username {
+    color: #fff;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.username_side {
+    height: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
 .logout_btn:hover {
-    background-color: #000;
+    background-color: #efefef;
 }
 
 .link {
@@ -66,13 +84,17 @@ h6 {
 }
 
 .post_container {
-    cursor: pointer;
     padding: 0px;
     margin-bottom: 10px;
     border-radius: 10px;
     max-width: 600px;
     border: 1px solid #eee;
     margin: 10px auto;
+    background-color: #fff;
+}
+
+.post_container .clickable {
+    cursor: pointer;
 }
 
 .post_header {
@@ -99,9 +121,27 @@ h6 {
 
 .post_footer {
     text-align: left;
-    padding: 20px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
     font-size: 12px;
     font-weight: 500;
+}
+
+.post_footer p {
+    color: #333;
+    font-weight: 400;
+}
+
+.post_footer .icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: #00838f;
+}
+
+.icon_click {
+    background: transparent;
+    border: 0;
 }
 
 .form_row {
