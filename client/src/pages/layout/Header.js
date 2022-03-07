@@ -1,10 +1,18 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../helpers/AuthContext'
+import { AuthContext } from '../../helpers/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 const Header = () => {
 
-    const { authState } = useContext(AuthContext)
+    const { authState, setAuthState } = useContext(AuthContext)
+    const history = useHistory()
+
+    const handleClick = e => {
+        localStorage.removeItem("accessToken")
+        setAuthState({ username: "", id: 0, status: false })
+        history.push('/login')
+    }
+
     return (
         <div className="header">
             <div className='left_menu'>
@@ -15,7 +23,7 @@ const Header = () => {
                     New Post
                 </Link>
             </div>
-            {!authState && (
+            {authState.status === false ? (
                 <>
                     <div className='right_menu'>
                         <Link to="/login" className='link'>
@@ -25,6 +33,10 @@ const Header = () => {
                             Register
                         </Link>
                     </div>
+                </>
+            ) : (
+                <>
+                    <button className='logout_btn' onClick={handleClick}>Logout</button>
                 </>
             )}
         </div >
