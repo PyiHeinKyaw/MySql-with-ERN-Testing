@@ -51,4 +51,26 @@ router.get('/checkauth', validateToken, async (req, res) => {
     res.json(req.user)
 })
 
+
+router.put('/changepassword', validateToken, async (req, res) => {
+    const { oldPass, newPass } = req.body
+    const user = await Users.findOne({ where: { id: req.user.id } })
+
+    // res.json(user)
+
+    bcrypt.compare(oldPass, user.password).then(async (match) => {
+        if (!match) {
+            res.json({ error: "Wrong Password Entered!" })
+        } else {
+            bcrypt.hash(newPass, 10).then((hash) => {
+                Users.update(
+                    { password: hash },
+                    { where: { id: req.user.id } }
+                )
+                res.json("Password Update Success")
+            })
+        }
+    })
+})
+
 module.exports = router

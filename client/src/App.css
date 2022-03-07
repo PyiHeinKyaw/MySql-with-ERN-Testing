@@ -118,7 +118,20 @@ h6 {
     text-align: left;
     line-height: 20px;
 }
-
+.indi_post_footer{
+    display: flex;
+    justify-content: space-between;
+}
+.indi_post_footer button{
+    border-radius: 4px;
+    padding: 10px 20px;
+    background-color: #E34C26;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 0;
+    cursor: pointer;
+}
 .post_footer {
     text-align: left;
     padding: 10px 20px;
@@ -138,7 +151,10 @@ h6 {
     cursor: pointer;
     color: #00838f;
 }
-
+.post_footer .footer_group{
+    display: flex;
+    margin-right: 10px;
+}
 .icon_click {
     background: transparent;
     border: 0;

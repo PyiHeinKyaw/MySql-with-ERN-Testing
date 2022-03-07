@@ -16,12 +16,17 @@ const Header = () => {
     return (
         <div className="header">
             <div className='left_menu'>
-                <Link to="/" className='link'>
-                    Home
-                </Link>
-                <Link to="/createpost" className='link'>
-                    New Post
-                </Link>
+                {authState.status && (
+                    <>
+                        <Link to="/" className='link'>
+                            Home
+                        </Link>
+                        <Link to="/createpost" className='link'>
+                            New Post
+                        </Link>
+                    </>
+                )}
+
             </div>
 
             {authState.status === false ? (

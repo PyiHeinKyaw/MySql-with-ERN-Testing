@@ -1,27 +1,26 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import axios from 'axios'
 import { Post } from './components'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { useEffect, useState } from 'react'
-import { AuthContext } from '../../helpers/AuthContext'
+
 
 const Home = () => {
     const [posts, setPosts] = useState([])
 
-    const { authState } = useContext(AuthContext)
-
-
     useEffect(() => {
-        axios.get("http://localhost:3030/posts").then((response) => {
+        axios.get("http://localhost:3030/posts", {
+            headers: { accessToken: localStorage.getItem("accessToken") }
+        }).then((response) => {
             setPosts(response.data)
         })
+
     }, [posts])
 
     return (
         <div>
             {posts.map((value, key) => (
                 <div key={key}>
-                    <Post value={value} key={key} heartButton={<AiOutlineHeart className='icon' />} />
+                    <Post value={value} key={key} />
                 </div>
             ))}
         </div>

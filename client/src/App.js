@@ -14,35 +14,40 @@ const App = () => {
             headers: {
                 accessToken: localStorage.getItem("accessToken")
             }
+        }).then((response) => {
+            if (response.data.error) {
+                setAuthState({ username: "", id: 0, status: false })
+            }
+            else {
+                setAuthState({
+                    username: response.data.username,
+                    id: response.data.id,
+                    status: true,
+                })
+            }
         })
-            .then((response) => {
-                if (response.data.error) {
-                    setAuthState({ username: "", id: 0, status: false })
-                }
-                else {
-                    setAuthState({
-                        username: response.data.username,
-                        id: response.data.id,
-                        status: true,
-                    })
-                }
-            })
     }, [])
+
     return (
         <div className="">
             <AuthContext.Provider value={{ authState, setAuthState }}>
                 <Router>
                     <Header />
                     <Switch>
-                        <Route path="/" exact component={Home}></Route>
-                        <Route path="/createpost" exact component={CreatePost}></Route>
-                        <Route path="/post/:id" exact component={Post}></Route>
-                        {!authState.status && (
+
+                        {!authState.status ? (
                             <>
                                 <Route path="/login" exact component={Login}></Route>
                                 <Route path="/register" exact component={Register}></Route>
                             </>
+                        ) : (
+                            <>
+                                <Route path="/" exact component={Home}></Route>
+                                <Route path="/createpost" exact component={CreatePost}></Route>
+                                <Route path="/post/:id" exact component={Post}></Route>
+                            </>
                         )}
+
                     </Switch>
                 </Router>
             </AuthContext.Provider>
