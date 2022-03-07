@@ -62,7 +62,7 @@ const Login = () => {
                     <ErrorMessage name="password" component="div" className='error_row' />
 
                     <div className='form_row form_row_btn'>
-                        <button type="submit">Login</button>
+                        <button type="submit">Submit</button>
                     </div>
                 </Form>
             </Formik></>
