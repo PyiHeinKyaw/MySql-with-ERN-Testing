@@ -14,9 +14,13 @@ app.use('/auth', users)
 const posts = require('./routes/Posts')
 app.use('/posts', posts)
 
-// posts routes
+// likes routes
 const comments = require('./routes/Comments')
 app.use('/comments', comments)
+
+// likes routes
+const likes = require('./routes/Likes')
+app.use('/likes', likes)
 
 
 const port = 3030
