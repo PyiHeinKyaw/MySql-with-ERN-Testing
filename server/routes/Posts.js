@@ -21,14 +21,15 @@ router.get('/byId/:id', async (req, res) => {
 
 router.get('/byUser/', validateToken, async (req, res) => {
     const username = req.user.username
-    const posts = await Posts.findAll({ where: { username: username } })
-    res.json(posts)
+    // const posts = await Posts.findAll({ where: { username: username } })
+    // res.json(posts)
 })
 
 router.post('/', validateToken, async (req, res) => {
 
     const post = req.body;
     post.username = req.user.username
+    post.UserId = req.user.id
     await Posts.create(post);
     res.json(post);
 })

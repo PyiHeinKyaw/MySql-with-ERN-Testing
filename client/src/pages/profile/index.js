@@ -8,7 +8,7 @@ const Profile = () => {
 
     return (
         <>
-            <Hero />
+            <Hero id={id} />
         </>
     )
 }

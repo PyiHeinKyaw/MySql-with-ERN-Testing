@@ -56,8 +56,6 @@ router.put('/changepassword', validateToken, async (req, res) => {
     const { oldPass, newPass } = req.body
     const user = await Users.findOne({ where: { id: req.user.id } })
 
-    // res.json(user)
-
     bcrypt.compare(oldPass, user.password).then(async (match) => {
         if (!match) {
             res.json({ error: "Wrong Password Entered!" })
@@ -71,6 +69,12 @@ router.put('/changepassword', validateToken, async (req, res) => {
             })
         }
     })
+})
+
+router.get('/:id', validateToken, async (req, res) => {
+    const userId = req.params.id
+    const user = await Users.findOne({ where: { id: userId } })
+    res.json(user)
 })
 
 module.exports = router
