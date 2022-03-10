@@ -14,3 +14,7 @@ export const TimeDiff = props => {
         return `${diff} ${checkHour()} ago`
     }
 }
+
+export const CurrentTime = props => {
+    return Moment().format('Y-MM-DD HH:mm:ss')
+}

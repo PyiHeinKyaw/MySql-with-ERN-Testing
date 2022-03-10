@@ -24,6 +24,8 @@
 .info .username{
     font-size: 19px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
 }
 .info .social_row{
     display: flex;
@@ -31,4 +33,54 @@
 .social_group{
     font-size: 12px;
     margin-right: 20px;
+}
+.edit_profile{
+    margin-left: 20px;
+    background-color: transparent;
+    border: 1px solid #8a8a8a;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s all;
+    letter-spacing: 1px;
+}
+.edit_profile .icon{
+    margin-right: 5px;
+}
+.edit_profile:hover{
+    color: #fff;
+    /* background-color: #00838f;
+    border: 1px solid #00838f; */
+    background-color: #000;
+    border: 1px solid #000;
+}
+.follow_btn{
+    margin-left: 20px;
+    background-color: #00838f;
+    border: 1px solid #00838f;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s all;
+    color: #fff;
+    letter-spacing: 1px;
+}
+.follow_done{
+    margin-left: 20px;
+    background-color: transparent;
+    border: 1px solid #8a8a8a;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s all;
+    letter-spacing: 1px;
 }

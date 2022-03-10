@@ -19,10 +19,10 @@ router.get('/byId/:id', async (req, res) => {
     res.json(post)
 })
 
-router.get('/byUser/', validateToken, async (req, res) => {
-    const username = req.user.username
-    // const posts = await Posts.findAll({ where: { username: username } })
-    // res.json(posts)
+router.get('/byUser/:id', validateToken, async (req, res) => {
+    const userId = req.params.id
+    const posts = await Posts.findAll({ where: { UserId: userId } })
+    res.json(posts)
 })
 
 router.post('/', validateToken, async (req, res) => {

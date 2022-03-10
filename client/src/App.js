@@ -34,7 +34,6 @@ const App = () => {
                 <Router>
                     <Header />
                     <Switch>
-
                         {!authState.status ? (
                             <>
                                 <Route path="/login" exact component={Login}></Route>
